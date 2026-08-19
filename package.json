@@ -28,7 +28,8 @@
     "mcp/",
     "README.md",
     "LICENSE",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "server.json"
   ],
   "engines": {
     "node": ">=22"
@@ -37,5 +38,14 @@
   "scripts": {
     "preflight": "node scripts/preflight.js",
     "start": "node server.js"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Giancarlo26/obs-action-history.git"
+  },
+  "homepage": "https://github.com/Giancarlo26/obs-action-history#readme",
+  "bugs": {
+    "url": "https://github.com/Giancarlo26/obs-action-history/issues"
+  },
+  "mcpName": "io.github.Giancarlo26/obs-action-history"
 }

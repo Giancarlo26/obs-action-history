@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 "use strict";
 /*
  * obs-action-history
@@ -35,7 +36,10 @@ try {
   log("no OBS password found:", e.message.split("\n")[0]);
 }
 const SERVER_NAME = "obs-action-history";
-const SERVER_VERSION = "1.0.0";
+// Read from package.json so the manifest, the npm listing and what the
+// client is told can never disagree.
+let SERVER_VERSION = "0.0.0";
+try { SERVER_VERSION = require("./package.json").version; } catch {}
 
 
 /* ------------------------------------------------------------------ *
@@ -430,7 +434,13 @@ const TOOLS = [
   },
   {
     name: "obs_create_scene",
-    description: "Create a new empty scene.",
+    description:
+      "Create a new empty scene. It is created but NOT switched to, so this is safe while live. " +
+      "A new scene is empty in the literal sense: no background, no audio, nothing inherited from " +
+      "any other scene, so cutting to it before adding sources shows black. Build it first with " +
+      "obs_scene_item_add, then switch. Scene names are unique across the collection and are what " +
+      "every other tool addresses, so pick one you can live with; renaming later is safe inside " +
+      "OBS and breaks anything outside it that refers to the old name.",
     inputSchema: S.str("sceneName", "Name for the new scene."),
     handler: async ({ sceneName }) => {
       await obs.request("CreateScene", { sceneName });

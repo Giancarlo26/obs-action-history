@@ -1,0 +1,37 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.Giancarlo26/obs-action-history",
+  "title": "OBS Action History",
+  "description": "An MCP server for OBS Studio that can hear. Subscribes to OBS events and audio meters, so an assistant can react to the show rather than only poll it. Answers questions no request-only server can, such as which microphone is actually producing sound.",
+  "websiteUrl": "https://github.com/Giancarlo26/obs-action-history",
+  "repository": {
+    "url": "https://github.com/Giancarlo26/obs-action-history",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "obs-action-history",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "OBS_WEBSOCKET_URL",
+          "description": "Where OBS is listening. Defaults to ws://127.0.0.1:4455, which is correct unless the port was changed in OBS.",
+          "isRequired": false,
+          "isSecret": false
+        },
+        {
+          "name": "OBS_WEBSOCKET_PASSWORD",
+          "description": "The password from OBS > Tools > WebSocket Server Settings. Optional here: when unset the server reads secrets.json beside itself instead. A wrong value closes the socket with code 4009, which this server reports as a rejected password rather than as a timeout.",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
