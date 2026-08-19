@@ -31,7 +31,15 @@ const TEXT = /\.(js|json|md|txt|yml|yaml|editorconfig|gitattributes|gitignore)$/
  */
 const IDENTITY = [
   [/joaqu/i, "a person's name"],
-  [/giancarlo/i, "a person's name"],
+  /*
+   * The GitHub account handle is exempt, and only the handle. It has to appear:
+   * it is in the clone URL, in the issues URL and in the io.github namespace
+   * that the official registry uses to prove who owns this package. What is
+   * NOT allowed is the bare first name, which is what the origin project's
+   * scenes were labelled with and which identifies a person rather than an
+   * account.
+   */
+  [/giancarlo(?!26\b)/i, "a person's name (the account handle Giancarlo26 is allowed)"],
   [/\bdiego\b/i, "a person's name"],
   [/clanker/i, "a bot name from the origin project"],
   [/livwstream|livestream-studio/i, "the origin project's name"],
