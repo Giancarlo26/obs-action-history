@@ -21,7 +21,18 @@ const path = require("path");
 
 const ROOT = path.resolve(__dirname, "..");
 const SKIP_DIRS = new Set([".git", "node_modules", "scripts"]);
+/*
+ * Read by extension, by leading dot, OR by exact name. The third case is
+ * not decoration: LICENSE has no extension and does not start with a dot,
+ * so an earlier version of this file never opened it, and a real first name
+ * sat in the copyright line through a full green run of every check.
+ * Extensionless files are exactly where attribution lives.
+ */
 const TEXT = /\.(js|json|md|txt|yml|yaml|editorconfig|gitattributes|gitignore)$/i;
+const NAMED = new Set([
+  "LICENSE", "LICENCE", "COPYING", "NOTICE", "AUTHORS", "CONTRIBUTORS",
+  "CHANGELOG", "README", "Makefile", "Dockerfile", "CODEOWNERS",
+]);
 
 /*
  * Anything here is a value that belongs to one room. The list is deliberately
@@ -87,7 +98,7 @@ function walk(dir, out = []) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
     if (e.isDirectory()) {
       if (!SKIP_DIRS.has(e.name)) walk(path.join(dir, e.name), out);
-    } else if (TEXT.test(e.name) || e.name.startsWith(".")) {
+    } else if (TEXT.test(e.name) || e.name.startsWith(".") || NAMED.has(e.name)) {
       out.push(path.join(dir, e.name));
     }
   }
