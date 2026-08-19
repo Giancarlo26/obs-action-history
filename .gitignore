@@ -1,0 +1,12 @@
+# The real MCP registration, which carries the OBS password if you choose to
+# put it there. .mcp.example.json is the committed one.
+.mcp.json
+
+# The OBS websocket password. There is no example with a value in it on
+# purpose - a copied placeholder that looks like a password is worse than a
+# missing file, because the failure arrives as "cannot reach OBS" rather than
+# as "wrong password".
+secrets.json
+
+node_modules/
+*.log

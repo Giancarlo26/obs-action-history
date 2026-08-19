@@ -1,0 +1,41 @@
+{
+  "name": "obs-action-history",
+  "version": "0.1.0",
+  "description": "An MCP server for OBS Studio that can hear. Subscribes to OBS events and audio meters, so an assistant can react to the show instead of only polling it.",
+  "keywords": [
+    "obs",
+    "obs-studio",
+    "obs-websocket",
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "llm",
+    "ai-agent",
+    "livestream",
+    "streaming",
+    "broadcast",
+    "automation"
+  ],
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "server.js",
+  "bin": {
+    "obs-action-history": "server.js"
+  },
+  "files": [
+    "server.js",
+    "lib/",
+    "mcp/",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {},
+  "scripts": {
+    "preflight": "node scripts/preflight.js",
+    "start": "node server.js"
+  }
+}

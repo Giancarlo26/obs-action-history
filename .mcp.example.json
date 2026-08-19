@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "obs": {
+      "command": "node",
+      "args": ["/absolute/path/to/obs-action-history/server.js"],
+      "env": {
+        "OBS_WEBSOCKET_URL": "ws://127.0.0.1:4455"
+      }
+    }
+  }
+}
